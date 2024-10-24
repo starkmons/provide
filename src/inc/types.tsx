@@ -1,4 +1,5 @@
 export interface Beast {
+	token_id: string,
 	prefix: string;
 	name: string;
 	suffix: string;
@@ -10,6 +11,7 @@ export interface Beast {
 }
 
 export interface BeastNFTData {
+	token_id: string,
 	metadata: {
 		image: string;
 		attributes: Attribute[];

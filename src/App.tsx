@@ -28,8 +28,9 @@ function App() {
         .then((res: { data: BeastNFTData[] }) => {
           console.log(res);
           const beasts = res.data.map(beast_data => {
+            const token_id = beast_data.token_id;
             const { image, attributes } = beast_data.metadata;
-            const beast = { ...extractBeastFromData(attributes), image };
+            const beast = { ...extractBeastFromData(attributes), image, token_id };
             return beast as Beast;
           });
           setBeasts(beasts);
