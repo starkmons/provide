@@ -4,30 +4,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { WalletBar } from './components/wallet-button';
+import { Attribute, Beast, BeastNFTData } from './inc/types';
 
-interface Beast {
-  prefix: string;
-  name: string;
-  suffix: string;
-  type: string;
-  tier: number;
-  level: number;
-  health: number;
-  image: string;
-}
-
-interface BeastNFTData {
-  metadata: {
-    image: string;
-    attributes: Attribute[];
-  }
-}
-
-interface Attribute {
-  display_type: string | null;
-  trait_type: string;
-  value: string | number;
-};
 
 function extractBeastFromData(attributes: Attribute[]): Record<string, string | number> {
   return attributes.reduce((acc, attribute) => {
