@@ -4,7 +4,7 @@ export function WalletBar() {
 	const { address } = useAccount();
 
 	return (
-		<div className="w-full py-2 h-24 border-b border-primary">
+		<div className="w-full py-2 h-24">
 			{address ? <ConnectedWallet address={address} /> : <ConnectWallet />}
 		</div>
 	);
@@ -18,20 +18,29 @@ function ConnectedWallet({ address }: { address: `0x${string}` }) {
 	);
 }
 
+export const CTAButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
+	const clrClass = props.disabled ? "bg-gray-400 cursor-not-allowed" : "bg-purple-600 hover:bg-purple-700";
+	return (
+		<button
+			{...props}
+			className={`text-white font-semibold py-2 px-6 rounded-lg ${clrClass} ${props.className}`}
+		/>
+	);
+};
+
 function ConnectWallet() {
 	const { connect, connectors, status } = useConnect();
 
 	return (
 		<div>
-			<div className="font-medium">Connect Wallet: </div>
 			{connectors.map((connector) => (
-				<button
+				<CTAButton
 					key={connector.id}
 					onClick={() => connect({ connector })}
 					disabled={status === "pending"}
 				>
 					{connector.name}
-				</button>
+				</CTAButton>
 			))}
 		</div >
 	);
