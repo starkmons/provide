@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Beast } from '../inc/types';
-import { WalletBar } from './wallet-button';
+import { CTAButton, WalletBar } from './wallet-button';
 
 interface BeastCardProps {
 	beast: Beast;
@@ -93,13 +93,13 @@ const NFTBreedingInterface: React.FC<NFTBreedingInterfaceProps> = ({
 							: <EmptySlot key={slot} />
 					))}
 				</div>
-				<button
+				<CTAButton
 					onClick={initiateBreeding}
 					disabled={selectedBeasts.length !== 2}
-					className="mt-4 px-6 py-3 rounded text-white font-semibold bg-gray-300 cursor-not-allowed"
+					className="mt-4 px-6 py-3 rounded text-white font-semibold bg-gray-300"
 				>
-					Start Breeding
-				</button>
+					{selectedBeasts.length == 2 ? 'Start Breeding' : 'Select 2 Beasts to Breed'}
+				</CTAButton>
 			</div>
 
 			{/* Beast Collection Grid */}
@@ -107,8 +107,9 @@ const NFTBreedingInterface: React.FC<NFTBreedingInterfaceProps> = ({
 				<h2 className="text-2xl font-bold mb-4">Your Beasts</h2>
 				<div className="p-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 text-center">
 					{!isWalletConnected ? (
-						<div className="col-span-full flex flex-col items-center justify-center p-8 bg-gray-800 rounded-lg">
+						<div className="col-span-full flex flex-col items-center justify-center p-8">
 							<p className="text-gray-300 mb-4 text-lg">Connect your wallet to view and breed your beasts</p>
+
 							<WalletBar />
 						</div>
 					) : (
