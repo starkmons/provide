@@ -28,3 +28,21 @@ const BeastCard: React.FC<BeastCardProps> = ({ beast, isSelected, onClick }) => 
 	);
 };
 
+interface EmptySlotProps {
+	onClick?: () => void;
+}
+
+const EmptySlot: React.FC<EmptySlotProps> = ({ onClick }) => (
+	<div
+		onClick={onClick}
+		className={`flex flex-col items-center ${onClick ? 'cursor-pointer' : ''} transition-all`}
+	>
+		<div className={`w-24 h-24 object-cover rounded-full bg-gray-500`} />
+		<div className="text-gray-400 mt-2 px-2 rounded-full text-xs">
+			&mdash;
+		</div>
+		<div className="text-center text-sm mb-2 text-gray-200">
+			Empty Slot
+		</div>
+	</div>
+);
