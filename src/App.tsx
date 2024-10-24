@@ -14,6 +14,7 @@ function extractBeastFromData(attributes: Attribute[]): Record<string, string | 
 
 function App() {
   const { address } = useAccount();
+  const [loadingBeasts, setLoadingBeasts] = useState(true);
   const [beasts, setBeasts] = useState<Beast[]>([]);
 
   useEffect(() => {
@@ -24,7 +25,6 @@ function App() {
       )
         .then(res => res.json())
         .then((res: { data: BeastNFTData[] }) => {
-          console.log(res);
           const beasts = res.data.map(beast_data => {
             const token_id = beast_data.token_id;
             const { image, attributes } = beast_data.metadata;
@@ -32,6 +32,7 @@ function App() {
             return beast as Beast;
           });
           setBeasts(beasts);
+          setLoadingBeasts(false);
         })
         .catch(error => console.error('Error fetching beasts:', error));
     }
