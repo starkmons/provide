@@ -3,6 +3,7 @@ import { useAccount } from "@starknet-react/core";
 import './App.css'
 import { WalletBar } from './components/wallet-button';
 import { Attribute, Beast, BeastNFTData } from './inc/types';
+import BreedingInterface from './components/breeding';
 
 
 function extractBeastFromData(attributes: Attribute[]): Record<string, string | number> {
@@ -39,18 +40,20 @@ function App() {
   }, [address]);
 
   return (
-    <>
-      <div className="card">
-        <WalletBar></WalletBar>
-      </div>
-      <pre>
-        {beasts.map(beast => <div className="card">
-          <img src={beast.image} />
-          <h3>{beast.prefix} {beast.name} {beast.suffix}</h3>
-        </div>)}
-      </pre>
-    </>
-  )
+    <BreedingInterface
+      beasts={beasts}
+      onBreed={(beast1, beast2) => {
+        console.log(beast1, beast2);
+      }}
+      isWalletConnected={!!address}
+    >
+      {loadingBeasts ? (
+        <h3>Loading...</h3>
+      ) : (
+        <h3>You have no beasts.</h3>
+      )}
+    </BreedingInterface>
+  );
 }
 
 export default App
