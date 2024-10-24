@@ -78,11 +78,11 @@ const NFTBreedingInterface: React.FC<NFTBreedingInterfaceProps> = ({
 	};
 
 	return (
-		<div className="p-8">
+		<>
 			{/* Selected Beasts Section */}
 			<div className="mb-8">
 				<h2 className="text-2xl font-bold mb-4">Selected Beasts ({selectedBeasts.length}/2)</h2>
-				<div className="p-10 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-">
+				<div className="p-10 mx-auto grid grid-cols-2 gap-5 max-w-xl">
 					{[0, 1].map((slot) => (
 						selectedBeasts[slot]
 							? <BeastCard
@@ -105,7 +105,7 @@ const NFTBreedingInterface: React.FC<NFTBreedingInterfaceProps> = ({
 			{/* Beast Collection Grid */}
 			<div>
 				<h2 className="text-2xl font-bold mb-4">Your Beasts</h2>
-				<div className="p-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 text-center">
+				<div className="p-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5 text-center">
 					{!isWalletConnected ? (
 						<div className="col-span-full flex flex-col items-center justify-center p-8 bg-gray-800 rounded-lg">
 							<p className="text-gray-300 mb-4 text-lg">Connect your wallet to view and breed your beasts</p>
@@ -123,7 +123,7 @@ const NFTBreedingInterface: React.FC<NFTBreedingInterfaceProps> = ({
 					)}
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 
